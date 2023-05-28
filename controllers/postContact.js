@@ -1,11 +1,14 @@
-const {addContact} = require("../models/contacts")
+const Contact = require("../models/contact")
 
 async function postContact(req, res, next) {
-    console.log(req.body);
-        const { name, email, phone } = req.body;
-        const newContact = await addContact(name, email, phone);
+try {
+    const newContact = await Contact.create(req.body)
         res.status(201).json(newContact);
         res.end();
+    } catch (error) {
+     console.log(error);
+    next(error);
+    }
 }
 
 module.exports = postContact
@@ -19,9 +22,3 @@ module.exports = postContact
 
 
 
-// async () => {
-//     console.log(req.body);
-//     const { name, email, phone } = req.body;
-//     const newContact = await addContact(name, email, phone);
-//     res.status(201).json(newContact);
-//     res.end();
