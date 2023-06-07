@@ -1,15 +1,32 @@
-const {
-  createContact,
-  updateContact,
-  updateFavoriteSchema,
-} = require("./contacts");
+const Joi = require("joi");
 
-const { registerSchema, loginSchema } = require("./users");
+const SCHEMAS = Joi.object().keys({
+  name: Joi.string().required(),
+  email: Joi.string().required(),
+  phone: Joi.string().required(),
+  favorite: Joi.boolean()
+});
+
+const createContact = Joi.object().keys({
+  body: SCHEMAS,
+});
+
+const updateContact = Joi.object().keys({
+  params: Joi.object().keys({
+    contactId: Joi.string().required(),
+  }),
+  body: SCHEMAS,
+},)
+
+const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required()
+
+})
 
 module.exports = {
   createContact,
   updateContact,
-  updateFavoriteSchema,
-  registerSchema,
-  loginSchema,
+  updateFavoriteSchema
 };
+
+

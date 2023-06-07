@@ -1,9 +1,8 @@
-const Contact = require("../../models/contact")
+const Contact = require("../models/contact")
 
 async function postContact(req, res, next) {
-    const {_id: owner} = req.user
 try {
-    const newContact = await Contact.create({...req.body, owner})
+    const newContact = await Contact.create(req.body)
         res.status(201).json(newContact);
         res.end();
     } catch (error) {
