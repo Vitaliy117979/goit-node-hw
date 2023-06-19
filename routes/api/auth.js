@@ -6,7 +6,7 @@ const authenticate = require("../middleware/authenticate");
 const upload = require("../middleware/upload");
 
 
-const {  register, login, getCurrent, logout, updataAvatar } = require("../../controllers");
+const {  register, login, getCurrent, logout, updataAvatar, verifyEmail, resendEmailVerify } = require("../../controllers");
 
 
 
@@ -15,8 +15,8 @@ router.post("/login", validate(schemas.loginSchema), login);
 router.get("/current", authenticate, getCurrent)
 router.post("/logout", authenticate, logout)
 router.patch("/avatars", authenticate, upload.single("avatarURL"), updataAvatar)
-
-
+router.get("/verify:/verificationToken", verifyEmail)
+router.post("/verify", validate(schemas.userEmailSchema), resendEmailVerify)
 
 
 module.exports = router;
