@@ -1,10 +1,11 @@
 const HttpError = require("../../helpers/HttpError");
 const User = require("../../models/user");
 const verifyEmailData = require("../../helpers/verifyEmailData");
-const { PROJECT_URL } = process.env;
 const sendEmail = require("../../helpers/sendEmail");
+const { PROJECT_URL } = process.env;
 
 const verifyEmail = async (req, res, next) => {
+    console.log(1);
   try {
     const { verificationToken } = req.params;
     const user = await User.findOne({ verificationToken });

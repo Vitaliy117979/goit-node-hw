@@ -15,7 +15,7 @@ router.post("/login", validate(schemas.loginSchema), login);
 router.get("/current", authenticate, getCurrent)
 router.post("/logout", authenticate, logout)
 router.patch("/avatars", authenticate, upload.single("avatarURL"), updataAvatar)
-router.get("/verify:/verificationToken", verifyEmail)
+router.get("/verify/:verificationToken", verifyEmail)
 router.post("/verify", validate(schemas.userEmailSchema), resendEmailVerify)
 
 
