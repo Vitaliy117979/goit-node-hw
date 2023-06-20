@@ -10,6 +10,7 @@ const { login } = require("./auth/userLogin");
 const { register } = require("./auth/userRegister");
 const getCurrent = require("./auth/getCurrent")
 const logout = require("./auth/logout")
+const {verifyEmail, resendEmailVerify} = require("./auth/verifyEmail")
 module.exports = {
   getContactsList,
   getContactById,
@@ -21,5 +22,7 @@ module.exports = {
   login,
   getCurrent,
   logout,
-  updataAvatar
+  updataAvatar,
+  verifyEmail,
+  resendEmailVerify
 };
